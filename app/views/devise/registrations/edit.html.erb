@@ -1,0 +1,46 @@
+<section class="bg-white">
+
+  <div class="container mx-auto flex items-center flex-wrap pb-12 border-t">
+    <div class="w-[500px] p-8 mx-auto flex flex-col items-center text-sm">
+      <div>
+        Orders
+      </div>
+
+      <div class="font-bold text-lg mt-8">Logged in as:  <%= current_user.email %></div>
+
+      <div class="mt-4">
+      <%= button_to("Log Out", destroy_user_session_path, method: :delete,
+        class: "hover:bg-zinc-100 cursor-pointer px-3 py-1 rounded-lg border border-zinc-700" ) %>
+      </div>
+
+      <div class="mt-4">
+      <% flash.each do |key, message| %>
+        <div class="flash <%= key %>"><%= message %></div>
+      <% end %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <div>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", readonly: true, hidden: true %>
+        </div>
+      
+        <div>
+          <%= f.label :firstname, "First Name" %><br />
+          <%= f.text_field :firstname, class: "text-sm w-64 h-8 rounded-lg" %>
+        </div>
+      
+        <div class="mt-2">
+          <%= f.label :lastname, "Last Name" %><br />
+          <%= f.text_field :lastname, class: "text-sm w-64 h-8 rounded-lg" %>
+        </div>
+      
+        <div class="mt-4">
+          <%= f.submit "Update", class: "hover:bg-zinc-100 cursor-pointer px-3 py-1 rounded-lg border border-zinc-700" %>
+        </div>
+      <% end %>
+      </div>
+
+
+      
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,38 @@
+<section class="bg-white">
+
+  <div class="container mx-auto flex items-center flex-wrap pb-12 border-t">
+    <div class="w-[700px] p-8 mx-auto ">
+      <div class="flex text-center">
+        <%= link_to "Create Review", reviews_new_path, class: "inline-block no-underline hover:text-black hover:underline py-2" %>
+      </div>
+
+      <% @reviews.each do |review| %>
+        <div class="mt-8">
+          <div class="flex space-x-1">
+            <% 5.times do |i| %>
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                fill="<%= i < review.rating ? 'currentColor' : 'none' %>" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24" 
+                class="w-6 h-6 text-zinc-700">
+                <path 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round" 
+                  stroke-width="1" 
+                  d="M12 17.27l5.18 3.73-1.64-5.81L20 10.54l-5.92-.03L12 4.77 9.92 10.5 4 10.53l4.46 4.65-1.64 5.82L12 17.27z">
+                </path>
+              </svg>
+            <% end %>
+          </div>
+          <div class="flex mt-2">
+            <b><%= review.user.firstname %> <%= review.user.lastname %></b>
+            <div class="ml-auto text-sm"><%= time_ago_in_words(review.created_at) %> ago</div>
+          </div>
+          <div class="py-4"><%= review.body.html_safe %></div>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+  </div>
+</section>

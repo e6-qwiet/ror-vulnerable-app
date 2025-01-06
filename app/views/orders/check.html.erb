@@ -1,0 +1,95 @@
+<section class="bg-white">
+
+  <div class="container mx-auto flex items-center flex-wrap pb-12 border-t">
+    <div class="w-[700px] p-8 mx-auto ">
+
+      <div>Order Draft</div>
+
+      <div class="flex flex-col items-center mt-8">
+          <div class="flex">
+            <div>
+              <%= @order.first_name %>
+            </div>
+    
+            <div class="ml-2">
+              <%= @order.last_name %>
+            </div>
+          </div>
+    
+          <div class="mt-4">
+            <%= @order.address_street %>
+          </div>
+    
+          <div class="mt-4">
+            <%= @order.address_second_line %>
+          </div>
+    
+          <div class="flex mt-4">
+            <div>
+            <%= @order.address_city %>
+            </div>
+    
+            <div class="ml-2">
+            <%= @order.address_state %>
+            </div>
+    
+            <div class="ml-2">
+            <%= @order.address_zip %>
+            </div>
+          </div>
+
+          <div class="mt-4 text-gray-500">
+            Bank Account Number
+          </div>
+          <div class="mt-0">
+            <%= @order.bank_account_number %>
+          </div>
+    
+          <div class="mt-4 text-gray-500">
+            Routing Number
+          </div>
+          <div class="mt-0">
+            <%= @order.routing_number %>
+          </div>
+      </div>
+
+      <div class="mt-16">
+        <% @cart_items.each do |cart_item| %>
+          <div class="flex border-t">
+            <%= image_tag(cart_item.product.image_url, class: "w-16") %>
+            <p class="mt-4"><%= cart_item.product.title %></p>
+            <p class="mt-4 ml-auto"><%= number_to_currency (cart_item.product.price / 100.0) %></p>
+            <p class="">
+              <%= form_with url: cart_remove_path(cart_item_id: cart_item.id), method: :post, local: true, class: "mt-4 ml-4 " do |form| %>
+                <% button_tag type: "submit", class: "hover:bg-zinc-100 rounded" do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                  </svg>
+                <% end %>
+              <% end %>
+            </p>
+          </div>
+        <% end %>
+          <div class="flex border-t">
+            <p class="mt-4 ml-16">Order Total</p>
+            <p class="mt-4 ml-auto"><%= number_to_currency (@cart_total / 100.0) %></p>
+            <p class="mt-4 ml-8"></p>
+          </div>
+      </div>
+
+      <div class="flex flex-wrap mt-8">
+        <div class="">
+           <%= link_to "Edit Order", new_order_path, class: "bg-yellow-100 rounded p-2 hover:bg-yellow-200" %>
+        </div>
+
+        <div class="ml-auto">
+          <%= form_with model: @order, url: new_order_create_path, method: :post, local: true, data: { turbo: false } do |form| %>
+            <%= form.submit 'Submit Order', class: "bg-gray-100 rounded px-2 py-1 hover:cursor-pointer hover:bg-gray-200" %>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+

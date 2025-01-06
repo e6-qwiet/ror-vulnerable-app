@@ -1,0 +1,39 @@
+<section class="bg-white">
+
+  <div class="container mx-auto flex items-center flex-wrap pb-12 border-t">
+    <div class="w-[500px] p-8 mx-auto flex flex-col items-center text-sm">
+      <% flash.each do |key, message| %>
+        <div class="flash <%= key %> mb-8 bg-red-100 p-2 rounded"><%= message %></div>
+      <% end %>
+
+      <div class="font-bold text-lg">Sign in</div>
+      
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field mt-4">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "text-sm w-64 h-8 rounded-lg" %>
+        </div>
+      
+        <div class="field mt-4">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "current-password", class: "text-sm w-64 h-8 rounded-lg" %>
+        </div>
+      
+        <% if devise_mapping.rememberable? %>
+          <div class="field mt-4">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+      
+        <div class="actions mt-4">
+          <%= f.submit "Sign in", class: "hover:bg-zinc-100 cursor-pointer px-3 py-1 rounded-lg border border-zinc-700" %>
+        </div>
+      <% end %>
+      
+      <div class="mt-8 pr-32">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</section>

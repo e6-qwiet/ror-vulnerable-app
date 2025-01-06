@@ -1,0 +1,84 @@
+<section class="bg-white">
+
+  <div class="container mx-auto flex items-center flex-wrap pb-12 border-t">
+    <div class="w-[700px] p-8 mx-auto ">
+      <div>View Order</div>
+
+            <div class="flex flex-col items-center mt-8">
+          <div class="flex">
+            <div>
+              <%= @order.first_name %>
+            </div>
+    
+            <div class="ml-2">
+              <%= @order.last_name %>
+            </div>
+          </div>
+    
+          <div class="mt-4">
+            <%= @order.address_street %>
+          </div>
+    
+          <div class="mt-4">
+            <%= @order.address_second_line %>
+          </div>
+    
+          <div class="flex mt-4">
+            <div>
+            <%= @order.address_city %>
+            </div>
+    
+            <div class="ml-2">
+            <%= @order.address_state %>
+            </div>
+    
+            <div class="ml-2">
+            <%= @order.address_zip %>
+            </div>
+          </div>
+
+          <div class="mt-4 text-gray-500">
+            Bank Account Number
+          </div>
+          <div class="mt-0">
+            <%= @order.bank_account_number %>
+          </div>
+    
+          <div class="mt-4 text-gray-500">
+            Routing Number
+          </div>
+          <div class="mt-0">
+            <%= @order.routing_number %>
+          </div>
+
+          <div class="mt-4 text-gray-500">
+            Order Submitted
+          </div>
+          <div class="mt-0">
+            <%= @order.updated_at %>
+          </div>
+      </div>
+
+
+      <div class="mt-16">
+        <% @order_products.each do |order_product| %>
+          <div class="flex border-t">
+            <%= image_tag(order_product.image_url, class: "w-16") %>
+            <p class="mt-4"><%= order_product.title %></p>
+            <p class="mt-4 ml-auto"><%= number_to_currency (order_product.price / 100.0) %></p>
+            <p class="">
+            </p>
+          </div>
+        <% end %>
+          <div class="flex border-t">
+            <p class="mt-4 ml-16">Order Total</p>
+            <p class="mt-4 ml-auto"><%= number_to_currency (@order_total / 100.0) %></p>
+            <p class="mt-4 ml-8"></p>
+          </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</div>

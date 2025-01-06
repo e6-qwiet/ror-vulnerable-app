@@ -1,0 +1,15 @@
+<section class="bg-white">
+  <div class="container mx-auto flex items-center flex-wrap pb-12 border-t">
+    <div class="w-[700px] p-8 mx-auto ">
+      <% if notice.present? %>
+        <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+      <% end %>
+  
+      <%= render @product %>
+  
+      <div class="flex flex-col items-center">
+      <%= link_to "Continue Shopping", products_path, class: "hover:underline mt-16" %>
+      </div>
+    </div>
+  </div>
+</section>
