@@ -17,6 +17,20 @@ Ruby >= 3.2.0 (for Rails 8)
 sqlite3
 ```
 
+Run:
+
+```
+bundle 
+
+rails db:create
+
+rails db:migrate
+
+rails db:seed
+
+./bin/dev
+```
+
 ## How to use this project
 
 If you are already familiar with security issues such as SQL injection and XSS, you should be able to:
