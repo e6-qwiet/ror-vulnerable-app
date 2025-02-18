@@ -44,6 +44,4 @@ class User < ApplicationRecord
   def create_cart
     Cart.create_for_user(self)
   end
-
-
 end
