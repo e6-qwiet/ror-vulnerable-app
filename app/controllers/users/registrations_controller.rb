@@ -4,7 +4,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def update_resource(resource, params)
-    resource.update_without_password(params)
+    if params[:avatar_url].present?
+      # curl the avatar_url and save the file
+      resource.avatar_url = params[:avatar_url]
+      resource.import_avatar_from_url
+      super
+    else
+      resource.update_without_password(params)
+    end
   end
 
   def after_update_path_for(resource)
