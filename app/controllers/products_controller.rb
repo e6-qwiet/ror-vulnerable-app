@@ -14,15 +14,27 @@ class ProductsController < ApplicationController
       end
 
     @products = products.select { |p| p[:status] == "available" and p[:secret] != true }
-  end
+[
+    {
+        "[Dependency Name]": "require 'active_record'",
+        "[Validity]": "VALID",
+        "[Activity Status]": "ACTIVE",
+        "[Reason]": "ActiveRecord is a core component of Ruby on Rails, widely used for database interactions."
+    },
+    {
+        "[Dependency Name]": "require 'activesupport/sanitization'",
+        "[Validity]": "VALID",
+        "[Activity Status]": "ACTIVE",
+        "[Reason]": "Activesupport/Sanitization is part of the ActiveSupport library, which provides utility functions including input sanitization."
+    },
+    {
+        "[Dependency Name]": "require 'active_support/core_ext/string/inflections'",
+        "[Validity]": "VALID",
+        "[Activity Status]": "ACTIVE",
+        "[Reason]": "ActiveSupport/Core_Ext/String/Inflections module extends String class with inflection capabilities, such as downcasing."
+    }
+]
 
-  def search
-    term = params[:term]
-    #@products = Product.where("title LIKE ?", "%#{term}%")
-    @products = Product.find_by_sql("SELECT * FROM products WHERE title LIKE '%#{term}%'")
-
-    render :search_results
-  end
 
   # GET /products/1 or /products/1.json
   def show
